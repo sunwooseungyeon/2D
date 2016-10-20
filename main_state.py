@@ -7,33 +7,35 @@ from pico2d import *
 import game_framework
 import title_state
 
-
 name = "MainState"
 
-pacman = None
-monster = None
+pac = None
+mons = None
+back = None
+back1 = None
 font = None
-
-
 
 class Back:
     def __init__(self):
-        self.image = load_image('sebackground.png')
+        self.image = load_image('back.png')
 
     def draw(self):
-        self.image.draw(400, 300)
+        self.image.draw(400,300)
 
+class Back1:
+    def __init__(self):
+        self.image = load_image('back1.png')
 
+    def draw(self):
+        self.image.draw(400,300)
 
 class Pac:
     def __init__(self):
-        self.x, self.y = 0, 90
-        self.frame = 0
-        self.image = load_image('Pac-Man_sprite.png')
+        self.x, self. y = 0, 90
+        self.image = load_image('Pac-Man.png')
         self.dir = 1
 
     def update(self):
-        self.frame = (self.frame + 1) % 8
         self.x += self.dir
         if self.x >= 800:
             self.dir = -1
@@ -41,49 +43,32 @@ class Pac:
             self.dir = 1
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+       pass
+
+
+class Mons:
+    def __init__(self):
 
 
 def enter():
-    global boy, grass
-    boy = Boy()
-    grass = Grass()
-
+    global pac, mons
+    pac = Pac()
+    mons = Mons()
 
 def exit():
-    global boy, grass
-    del(boy)
-    del(grass)
-
+    pass
 
 def pause():
     pass
 
-
 def resume():
     pass
 
-
 def handle_events():
-    events = get_events()
-    for event in events:
-        if event.type == SDL_QUIT:
-            game_framework.quit()
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.change_state(title_state)
-
+    pass
 
 def update():
-    boy.update()
-
+    pass
 
 def draw():
-    clear_canvas()
-    grass.draw()
-    boy.draw()
-    update_canvas()
-
-
-
-
-
+    pass
