@@ -35,13 +35,24 @@ class Back1:
 
 class Mons1:
     def __init__(self):
+        self.x , self.y = 350, 315
+        self.frame = 0
         self.image = load_image('mons1.png')
+        self.dir = 1
+
+    def update(self):
+        self.x += self.dir
+        if self.x >= 450:
+            self.dir = -1
+        elif self.x <= 350:
+            self.dir = 1
 
     def draw(self):
-        self.image.draw(400, 300)
+        self.image.draw(self.x, self.y)
 
 
 class Pac:
+
     def __init__(self):
         self.x, self.y = 300, 318
         self.frame = 0
@@ -56,7 +67,7 @@ class Pac:
             self.dir = 1
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+        self.image.draw(self.x, self.y)
 
 
 def enter():
@@ -97,6 +108,7 @@ def handle_events():
 
 def update():
     pac.update()
+    mons1.update()
     pass
 
 
