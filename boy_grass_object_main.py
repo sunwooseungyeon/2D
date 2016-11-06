@@ -27,7 +27,7 @@ class Mons1:
         self.image.draw(400, 300)
 
 
-class Boy:
+class Pac:
     def __init__(self):
         self.x, self.y = 0, 90
         self.frame = 0
@@ -43,7 +43,7 @@ class Boy:
             self.dir = 1
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+        self.image.draw(self.x, self.y)
 
 
 def handle_events():

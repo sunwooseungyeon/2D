@@ -52,23 +52,17 @@ class Mons1:
 
 
 class Pac:
-
     def __init__(self):
-        self.x, self.y = 300, 318
+        self.x, self.y = 45, 318
         self.frame = 0
         self.image = load_image('Pac-Man.png')
-        self.dir = 1
 
     def update(self):
-        self.x += self.dir
-        if self.x >= 800:
-            self.dir = -1
-        elif self.x <= 0:
-            self.dir = 1
+       pass
+
 
     def draw(self):
         self.image.draw(self.x, self.y)
-
 
 def enter():
     global back,back1,mons1,pac
