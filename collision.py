@@ -6,6 +6,7 @@ import game_framework
 from pac import Pac # import Boy class from boy.py
 from mons1 import Mons1
 from mons2 import Mons2
+from mons3 import Mons3
 from back1 import Back1
 from back import Back
 
@@ -19,10 +20,11 @@ mons1 = None
 back = None
 
 def create_world():
-    global pac, mons1, mons2, back, back1
+    global pac, mons1, mons2, mons3, back, back1
     pac = Pac()
     mons1 = Mons1()
     mons2 = Mons2()
+    mons3 = Mons3()
     back = Back()
     back1 = Back1()
 
@@ -31,11 +33,12 @@ def create_world():
 
 
 def destroy_world():
-    global pac, mons1, mons2, back, back1
+    global pac, mons1, mons2, mons3, back, back1
 
     del(pac)
     del(mons1)
     del(mons2)
+    del(mons3)
     del(back)
     del(back1)
 
@@ -92,6 +95,7 @@ def update(frame_time):
     pac.update(frame_time)
     mons1.update(frame_time)
     mons2.update(frame_time)
+    mons3.update(frame_time)
     #for mons1 in mons1:
        #ball.update(frame_time)
 
@@ -107,6 +111,8 @@ def draw(frame_time):
     pac.draw()
     mons1.draw()
     mons2.draw()
+    mons3.draw()
+
 
     #for ball in balls:
         #ball.draw()

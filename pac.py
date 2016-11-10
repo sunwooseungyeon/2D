@@ -57,19 +57,12 @@ class Pac:
                 self.state = self.RIGHT_RUN
                 self.dir = 1
 
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-            if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.RIGHT_RUN, self.LEFT_RUN):
-                self.state = self.UP_RUN
-                self.dir = 1
-
-
-
-
 
         elif (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
             if self.state in (self.LEFT_RUN,):
                 self.state = self.LEFT_STAND
                 self.dir = 0
+
         elif (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
             if self.state in (self.RIGHT_RUN,):
                 self.state = self.RIGHT_STAND
