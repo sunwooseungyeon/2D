@@ -29,16 +29,16 @@ class Pac:
 
 
     def update(self, frame_time):
-        def clamp(minimum, x, maximum):
-            return max(minimum, min(x, maximum))
+        self.frame = (self.frame + 1) % 1
+        if self.state == self.RIGHT_RUN:
+            self.x = min(800, self.x + 2)
+        if self.state == self.LEFT_RUN:
+            self.x = max(0, self.x - 2)
+        if self.state == self.UP_RUN:
+            self.y = min(800,self.y + 2)
+        if self.state == self.DOWN_RUN:
+            self.y = max(0, self.y - 2)
 
-        self.life_time += frame_time
-        distance = Pac.RUN_SPEED_PPS * frame_time
-        self.total_frames += Pac.FRAMES_PER_ACTION * Pac.ACTION_PER_TIME * frame_time
-        self.frame = int(self.total_frames) % 1
-        self.x += (self.dir * distance)
-
-        self.x = clamp(0, self.x, 600)
 
     def draw(self):
         self.image.draw(self.x, self.y)
@@ -48,27 +48,36 @@ class Pac:
         pass
 
     def handle_event(self, event):
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
-            if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.RIGHT_RUN):
+        print(event.key, event.type)
+        if(event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
+            if self.state in(self.RIGHT_RUN, self.RIGHT_STAND, self.LEFT_STAND, self.UP_RUN, self.UP_STAND,self.DOWN_RUN, self.DOWN_STAND):
                 self.state = self.LEFT_RUN
-                self.dir = -1
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
-            if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.LEFT_RUN):
-                self.state = self.RIGHT_RUN
-                self.dir = 1
+
+        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
+             if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.LEFT_RUN, self.UP_RUN,self.UP_STAND,self.DOWN_RUN,self.DOWN_STAND):
+                 self.state = self.RIGHT_RUN
+
+        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
+            if self.state in (self.RIGHT_STAND,self.LEFT_STAND,self.RIGHT_RUN,self.LEFT_RUN,self.UP_STAND,self.DOWN_RUN, self.DOWN_STAND):
+                self.state = self.UP_RUN
+
+        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+            if self.state in (self.RIGHT_STAND, self.RIGHT_RUN, self.LEFT_STAND, self.LEFT_RUN, self.UP_RUN, self.UP_STAND, self.DOWN_STAND):
+                self.state = self.DOWN_RUN
 
 
-        elif (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
-            if self.state in (self.LEFT_RUN,):
-                self.state = self.LEFT_STAND
-                self.dir = 0
+        if (event.type, event.key) == (SDL_KEYUP, SDLK_DOWN):
+            if self.state in (self.DOWN_RUN,):
+                self.state = self.DOWN_STAND
 
-        elif (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
-            if self.state in (self.RIGHT_RUN,):
-                self.state = self.RIGHT_STAND
-                self.dir = 0
+        if (event.type, event.key) == (SDL_KEYUP, SDLK_UP):
+            if self.state in (self.UP_RUN,):
+                self.state = self.UP_STAND
 
+        if (event.type, event.key)  == (SDL_KEYUP, SDLK_LEFT):
+             if self.state in (self.LEFT_RUN,):
+                 self.state = self.LEFT_STAND
 
-
-
-
+        if (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
+             if self.state in (self.RIGHT_RUN,):
+                 self.state = self.RIGHT_STAND
