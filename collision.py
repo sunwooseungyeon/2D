@@ -1,9 +1,15 @@
+import random
+import json
+import os
+
+
 from pico2d import *
 
 import game_framework
 
-
 from pac import Pac # import Boy class from boy.py
+from don1 import Don1
+
 from mons1 import Mons1
 from mons2 import Mons2
 from mons3 import Mons3
@@ -20,22 +26,23 @@ mons1 = None
 back = None
 
 def create_world():
-    global pac, mons1, mons2, mons3, back, back1
+    global pac, mons1, mons2, mons3, back, back1, don1
     pac = Pac()
+    don1 = Don1()
     mons1 = Mons1()
     mons2 = Mons2()
     mons3 = Mons3()
     back = Back()
     back1 = Back1()
 
-
     pass
 
 
 def destroy_world():
-    global pac, mons1, mons2, mons3, back, back1
+    global pac, mons1, mons2, mons3, back, back1, don1
 
     del(pac)
+    del(don1)
     del(mons1)
     del(mons2)
     del(mons3)
@@ -109,6 +116,7 @@ def draw(frame_time):
     back.draw()
     back1.draw()
     pac.draw()
+    don1.draw()
     mons1.draw()
     mons2.draw()
     mons3.draw()
