@@ -22,6 +22,10 @@ class Mons2:
     def draw(self):
         self.image.draw(self.x, self.y)
 
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
     # fill here
     def get_bb(self):
-        return self.x - 10, self.y - 10, self.x + 10, self.y + 10
+        return self.x - 20, self.y - 20, self.x + 20, self.y + 20

@@ -6,10 +6,10 @@ import os
 from pico2d import *
 
 import game_framework
+import title_state
 
-from pac import Pac # import Boy class from boy.py
 from don1 import Don1
-
+from pac import Pac
 from mons1 import Mons1
 from mons2 import Mons2
 from mons3 import Mons3
@@ -26,10 +26,10 @@ mons1 = None
 back = None
 
 def create_world():
-    global pac, mons1, mons2, mons3, back, back1, don1
-    pac = Pac()
+    global pac, mons2, mons3, back, back1, don1,mons
     don1 = Don1()
-    mons1 = Mons1()
+    pac = Pac()
+    mons = [Mons1() for i in range(1)]
     mons2 = Mons2()
     mons3 = Mons3()
     back = Back()
@@ -41,8 +41,8 @@ def create_world():
 def destroy_world():
     global pac, mons1, mons2, mons3, back, back1, don1
 
+    del (don1)
     del(pac)
-    del(don1)
     del(mons1)
     del(mons2)
     del(mons3)
@@ -77,7 +77,7 @@ def handle_events(frame_time):
             game_framework.quit()
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-                game_framework.quit()
+                game_framework.push_state(title_state)
             else:
                 pac.handle_event(event)
 
@@ -100,9 +100,16 @@ def collide(a, b):
 
 def update(frame_time):
     pac.update(frame_time)
-    mons1.update(frame_time)
+    for mons1 in mons:
+        mons1.update(frame_time)
+
+    for mons1 in mons:
+        if collide(pac, mons1):
+            mons.remove(mons1)
+
     mons2.update(frame_time)
     mons3.update(frame_time)
+
     #for mons1 in mons1:
        #ball.update(frame_time)
 
@@ -115,11 +122,18 @@ def draw(frame_time):
     clear_canvas()
     back.draw()
     back1.draw()
-    pac.draw()
     don1.draw()
-    mons1.draw()
+    pac.draw()
+    for mons1 in mons:
+        mons1.draw()
     mons2.draw()
     mons3.draw()
+
+    for mons1 in mons:
+        mons1.draw_bb()
+    mons2.draw_bb()
+    mons3.draw_bb()
+    pac.draw_bb()
 
 
     #for ball in balls:

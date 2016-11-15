@@ -43,8 +43,11 @@ class Pac:
     def draw(self):
         self.image.draw(self.x, self.y)
 
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
     def get_bb(self):
-        return self.x - 50, self.y - 50, self.x +50, self.y +50
+        return self.x - 13, self.y - 13, self.x + 11, self.y + 11
         pass
 
     def handle_event(self, event):
