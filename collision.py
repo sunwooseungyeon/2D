@@ -106,6 +106,7 @@ def update(frame_time):
     for mons1 in mons:
         if collide(pac, mons1):
             mons.remove(mons1)
+            mons.self.image.draw(mons1)
 
     mons2.update(frame_time)
     mons3.update(frame_time)
