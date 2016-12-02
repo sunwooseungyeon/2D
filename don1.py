@@ -9,7 +9,6 @@ class Don1:
     def draw(self):
         self.image.draw(60, 35)
         self.image.draw(95, 35)
-        self.image.draw(130, 35)
 
 
 
