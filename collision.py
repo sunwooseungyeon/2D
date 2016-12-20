@@ -15,7 +15,7 @@ from mons2 import Mons2
 from mons3 import Mons3
 from back1 import Back1
 from back import Back
-
+from don2 import Don2
 
 
 
@@ -26,12 +26,13 @@ mons1 = None
 back = None
 
 def create_world():
-    global pac, mons2, mons3, back, back1, don1,mons
+    global pac, mons2, mons3, back, back1, don1,mons, don2
+    don2 = Don2()
     don1 = Don1()
     pac = Pac()
     mons = [Mons1() for i in range(1)]
-    mons2 = Mons2()
-    mons3 = Mons3()
+    mons2 = [Mons2() for i in range(1)]
+    mons3 = [Mons3() for i in range(1)]
     back = Back()
     back1 = Back1()
 
@@ -39,8 +40,9 @@ def create_world():
 
 
 def destroy_world():
-    global pac, mons1, mons2, mons3, back, back1, don1
+    global pac, mons1, mons2, mons3, back, back1, don1, don2
 
+    del(don2)
     del (don1)
     del(pac)
     del(mons1)
@@ -107,8 +109,11 @@ def update(frame_time):
         if collide(pac, mons1):
             mons.remove(mons1)
 
-    mons2.update(frame_time)
-    mons3.update(frame_time)
+    for mons2 in mons:
+        mons2.update(frame_time)
+
+    for mons3 in mons:
+        mons3.update(frame_time)
 
     #for mons1 in mons1:
        #ball.update(frame_time)
@@ -123,16 +128,22 @@ def draw(frame_time):
     back.draw()
     back1.draw()
     don1.draw()
+    don2.draw()
     pac.draw()
+
     for mons1 in mons:
         mons1.draw()
-    mons2.draw()
-    mons3.draw()
+    for mons2 in mons:
+        mons2.draw()
+    for mons3 in mons:
+        mons3.draw()
 
     for mons1 in mons:
         mons1.draw_bb()
-    mons2.draw_bb()
-    mons3.draw_bb()
+    for mons2 in mons:
+        mons2.draw_bb()
+    for mons3 in mons:
+        mons3.draw_bb()
     pac.draw_bb()
 
 
