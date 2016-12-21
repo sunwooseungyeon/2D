@@ -16,7 +16,7 @@ from mons3 import Mons3
 from back1 import Back1
 from back import Back
 from don2 import Don2
-
+from don3 import Don3
 
 
 name = "collision"
@@ -26,7 +26,8 @@ mons1 = None
 back = None
 
 def create_world():
-    global pac, mons2, mons3, back, back1, don1,mons, don2
+    global pac, mons2, mons3, back, back1, don1,mons, don2, don3
+    don3 = Don3()
     don2 = Don2()
     don1 = Don1()
     pac = Pac()
@@ -40,7 +41,9 @@ def create_world():
 
 
 def destroy_world():
-    global pac, mons1, mons2, mons3, back, back1, don1, don2
+    global pac, mons1, mons2, mons3, back, back1, don1, don2, don3
+
+    del(don3)
 
     del(don2)
     del (don1)
@@ -128,7 +131,9 @@ def draw(frame_time):
     back.draw()
     back1.draw()
     don1.draw()
+
     don2.draw()
+    don3.draw()
     pac.draw()
 
     for mons1 in mons:

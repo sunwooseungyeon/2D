@@ -2,12 +2,12 @@ import random
 
 from pico2d import *
 
-class Don2:
+class Don3:
     def __init__(self):
         self.image = load_image('don1.png')
 
     def draw(self):
-        self.image.draw(115, 35)
+        self.image.draw(170, 35)
 
 
 
