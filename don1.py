@@ -4,10 +4,11 @@ from pico2d import *
 
 class Don1:
     def __init__(self):
+        self.x, self.y = 60, 35
         self.image = load_image('don1.png')
 
     def draw(self):
-        self.image.draw(60, 35)
+        self.image.draw(self.x, self.y)
 
     def update(self, frame_time):
         pass
@@ -17,6 +18,6 @@ class Don1:
 
     # fill here
     def get_bb(self):
-        return self.x - 20, self.y - 20, self.x + 20, self.y + 20
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
 

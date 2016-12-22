@@ -2,9 +2,9 @@ import random
 
 from pico2d import *
 
-class Don2:
+class Don12:
     def __init__(self):
-        self.x, self.y = 135,35
+        self.x, self.y = 135, 560
         self.image = load_image('don1.png')
 
     def draw(self):
@@ -17,11 +17,10 @@ class Don2:
         pass
 
 
+
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
 
     # fill here
     def get_bb(self):
         return self.x - 15, self.y - 15, self.x + 15, self.y + 15
-
-
